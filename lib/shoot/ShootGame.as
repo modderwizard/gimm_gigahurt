@@ -51,6 +51,10 @@
 			
 			CameraManager.update();
 			
+			// Set our position to the inverse of the Camera's position
+			this.x = -CameraManager.getCameraPosition().x;
+			this.y = -CameraManager.getCameraPosition().y;
+			
 			if(InputManager.isKeyPressed(Keyboard.ESCAPE))
 			{
 				if(this.paused)

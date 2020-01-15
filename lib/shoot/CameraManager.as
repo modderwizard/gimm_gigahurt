@@ -5,8 +5,6 @@
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import fl.VirtualCamera;
-	
 	import lib.shoot.entity.Entity;
 	
 	public class CameraManager
@@ -14,30 +12,14 @@
 		public static var resWidth:int = 480;
 		public static var resHeight:int = 224;
 		
+		public static var screenScale:Number = 3;
+		
 		private static var entityTracking:Entity = null;
 		
 		private static var posX:Number = 0;
 		private static var posY:Number = 0;
 		private static var posXPrev:Number = 0;
 		private static var posYPrev:Number = 0;
-		
-		private static var root:DisplayObject = null;
-		
-		public static function initialize(root:DisplayObject):void
-		{
-			var camera:VirtualCamera = VirtualCamera.getCamera(root);
-			CameraManager.root = root;
-			
-			CameraManager.updatePosAndScale();
-		}
-		
-		public static function updatePosAndScale():void
-		{
-			var camera:VirtualCamera = VirtualCamera.getCamera(CameraManager.root);
-			
-			camera.setZoom(300);
-			camera.setPosition(resWidth, resHeight);
-		}
 		
 		// TODO: 
 		public static function update():void
@@ -49,8 +31,6 @@
 			
 			CameraManager.posXPrev = CameraManager.posX;
 			CameraManager.posYPrev = CameraManager.posY;				
-			
-			var camera:VirtualCamera = VirtualCamera.getCamera(CameraManager.root);
 			
 			var trackingX:Number = CameraManager.entityTracking.getBoundingBox().getCenterPoint().x;
 			var trackingY:Number = CameraManager.entityTracking.getBoundingBox().getCenterPoint().y;
@@ -90,9 +70,6 @@
 			{
 				CameraManager.getEntityTracking().posX = CameraManager.posX + CameraManager.getEntityTracking().getBoundingBoxXOffset();
 			}
-			
-			// Flash camera coordinates are inverted? So we have to subtract instead of add.
-			camera.setPosition(resWidth - CameraManager.posX, resHeight - CameraManager.posY);
 		}
 		
 		public static function getCameraPosition():Point
