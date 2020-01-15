@@ -1,4 +1,4 @@
-# GigaHurt (Spring 2018 - Group Game Project)
+# GigaHurt (Fall 2018 - Group Game Project)
 
 This is the group project I worked on in the GIMM 110 class of Spring 2018.
 The other contributors to this project are Joey Rowell and Parker Ussery.
